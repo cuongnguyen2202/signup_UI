@@ -1,0 +1,266 @@
+$main-color: #fa4c53;
+$text-color: #291667;
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    // box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fbfbfd;
+    padding: 5rem;
+    min-height: 100vh;
+}
+
+textarea,
+input,
+button,
+select {
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    font-weight: normal;
+}
+
+@mixin size($width, $height:$width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin flexbox($align: flex-start, $justify: flex-start, $flex-direction: row, $wrap: nowrap) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $flex-direction;
+    flex-wrap: $wrap;
+}
+
+.signup {
+    width: 100%;
+    height: 100%;
+    padding: 5rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 5px rgba(black, 0.1);
+    @include flexbox(stretch, space-between);
+    &__content,
+    &__image {
+        width: calc(50% - 3rem);
+    }
+    &__image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 1rem;
+    }
+    &__heading {
+        font-weight: bold;
+        font-size: 4.5rem;
+        color: #291667;
+        margin-bottom: 3.5rem;
+    }
+    &__caption {
+        color: $main-color;
+        font-weight: bold;
+        margin-bottom: 4.5em;
+        position: relative;
+        font-size: 1.4rem;
+        padding-left: 12rem;
+        &::before {
+            content: "";
+            @include size(10rem, 2px);
+            background-color: $main-color;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            margin-top: -1px;
+        }
+    }
+    &-social {
+        @include flexbox(stretch, space-between);
+        width: 100%;
+        margin-bottom: 6rem;
+        &__item {
+            padding: 1.5rem 0rem;
+            border-radius: 6px;
+            border: 1px solid #eee;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: $text-color;
+            @include flexbox(center, center);
+            width: calc(50% - 1.5rem);
+        }
+        &__icon {
+            margin-right: 2rem;
+        }
+    }
+    &-form {
+        &__label {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: $text-color;
+            cursor: pointer;
+            transform: translateX(1rem);
+        }
+        &__input {
+            padding: 1.5rem 0rem;
+            border-radius: 1rem;
+            display: block;
+            border: 1px solid #eee;
+            background-color: #fafbff;
+            width: 100%;
+            transition: all 0.25s linear;
+            &:focus {
+                background-color: white;
+                border-color: $main-color;
+            }
+        }
+        &__label {
+            font-size: 1.4rem;
+        }
+        &__row {
+            @include flexbox(stretch, space-between);
+            margin-bottom: 3rem;
+            .signup-form__group {
+                width: calc(50% - 1.5rem);
+            }
+        }
+        &__term {
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            input {
+                display: none;
+                &:checked+label::after {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+            label {
+                position: relative;
+                cursor: pointer;
+                margin-top: 3rem;
+                padding-left: 3.5rem;
+                font-size: 1.4rem;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    @include size(2.5rem);
+                    background-color: #eee;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    @include size(2rem, 1rem);
+                    border-left: 2px solid $main-color;
+                    border-bottom: 2px solid $main-color;
+                    transform: rotate(-45deg);
+                    left: 0.2rem;
+                    top: 0;
+                    opacity: 0;
+                    visibility: hidden;
+                    transition: 0.25s linear;
+                }
+            }
+        }
+        &__submit {
+            @include size(8rem);
+            border: 0;
+            background-color: $main-color;
+            border-radius: 2rem;
+            @include flexbox(center, center);
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 6.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 10px 0 rgba($main-color, 0.5);
+        }
+    }
+    &__already {
+        font-size: 1.2rem;
+        color: $text-color;
+        a {
+            color: $main-color;
+            text-decoration: none;
+        }
+    }
+}
+
+@media screen and (max-width: 1279px) {
+    .signup {
+        &__content {
+            width: 100%;
+        }
+        &__image {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 1279px) {
+    .signup {
+        &__content {
+            width: 100%;
+        }
+        &__image {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    body {
+        padding: 2rem;
+    }
+    .signup {
+        &__content {
+            width: 100%;
+        }
+        &-social {
+            flex-direction: column;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            &__item {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+        &__image {
+            display: none;
+        }
+        &-form {
+            &__row {
+                flex-direction: column;
+                margin-bottom: 0;
+                .signup-form__group {
+                    width: 100%;
+                }
+            }
+            &__group {
+                margin-bottom: 2rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 400px) {
+    body {
+        padding: 1rem;
+    }
+    .signup {
+        &-form {
+            &__term {
+                label {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
